@@ -1,0 +1,33 @@
+<script src="{{ url_for('static', filename='playerselect.js') }}" type="text/javascript"></script>
+{% extends 'base.html' %}
+{% block header %}
+<h1>{% block title %}Player Select{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+    <div class="tab">
+        {% for guild in guilds %}
+                <button class="tablinks" onclick="openGuild(event, '{{ guild }}')">{{ guild }}</button>
+        {% endfor %}
+    </div>
+
+    {% for guild, go in guilds.items() %}
+        <div id="{{ guild }}" class="tabcontent">
+            {% for player, po in go.items() %}
+                <div>
+                    <span class="playername">{{ po.name }} {{ po.version }}</span>
+                    <button type="button" class="addplayer" value="Add Player" onClick="addPlayer('{{player}}','{{po.name}}', '{{po.filename}}');">+</button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    
+    <div class="sideq">
+        <h1>Queue</h1>
+        <div id="queue">
+            <button type="button" id="createPDF" onclick="javascript:postData();">Create PDF</button>
+        </div>
+    </div>
+{% endblock %}
