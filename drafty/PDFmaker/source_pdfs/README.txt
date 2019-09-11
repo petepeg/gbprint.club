@@ -1,1 +1,0 @@
-The web ready pdfs are placed in here. Do not use the printer friendly ones.
