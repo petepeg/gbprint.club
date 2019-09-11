@@ -2,13 +2,16 @@
 <title> {% block title %} {% endblock %} - Drafty</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <nav>
-    <h1>Drafty</h1>
+        <h1>GB Print Club</h1>
+        <h6>Just the cards you want</h6>
     <ul>
         <li><a href="/">Player Select</a></li>
         <li><a href="/tips">Printing tips</a></li>
         <li><a href="/about">About</a></li>
     </ul>
+
 </nav>
+
 <section class="content">
     <header>
         {% block header %}{% endblock %}
@@ -18,3 +21,9 @@
     {% endfor %}
     {% block content %}{% endblock %}
 </section>
+
+<footer>
+   <p class="footnote">Guild Ball and its associated names, images, and logos are property of Steamforged Games Ltd.
+    <br>
+    The rest © 2019 GB Print Club</p> 
+</footer>
