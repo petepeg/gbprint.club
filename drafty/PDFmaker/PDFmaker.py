@@ -1,15 +1,20 @@
 from PIL import Image
 import random
+from flask import current_app as app
+from os.path import join
+
 def makePDF(player_list):
-    template = Image.open('./drafty/PDFmaker/pageTemplate.jpg')
+    #template = Image.open('./drafty/PDFmaker/pageTemplate.jpg') #change to generated absolute paths like in __init__
+    template = Image.open(join(app.config['PDF_MAKER'], 'pageTemplate.jpg'))
     blank_card = Image.new('RGB', (2626,1875), color=(255,255,255))
     opened_list = []
     pages = []
     #test_list = ['Masons1','Masons2','Masons3','Masons4','Masons5']
     filename = 'output' + str(random.randrange(100,999)) + str(random.randrange(100,999)) + '.pdf'
 
-    for i in player_list:
-        opened_list.append(Image.open('./drafty/PDFmaker/Cards/' + i + '.jpg'))
+    for name in player_list:
+        #opened_list.append(Image.open('./drafty/PDFmaker/Cards/' + i + '.jpg'))
+        opened_list.append(Image.open(join(app.config['PDF_MAKER'], 'Cards/') + name + '.jpg'))
 
     def page_maker(cards):
         #global pages
@@ -37,7 +42,8 @@ def makePDF(player_list):
 
 
     page_maker(opened_list)
-    pages[0].save('./drafty/download/' + filename, save_all=True, resolution=500, append_images=pages[1:])
+    #pages[0].save('./drafty/download/' + filename, save_all=True, resolution=500, append_images=pages[1:])
+    pages[0].save(app.config['UPLOAD_FOLDER'] + filename, save_all=True, resolution=500, append_images=pages[1:])
 
     return filename
 

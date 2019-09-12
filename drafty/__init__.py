@@ -25,6 +25,7 @@ def create_app(test_config=None):
     # 
     from os.path import join, dirname, realpath
     app.config['UPLOAD_FOLDER'] = join(dirname(realpath(__file__)), 'download/')
+    app.config['PDF_MAKER'] = join(dirname(realpath(__file__)), 'PDFmaker/')
 
     from . import playerselect
     app.register_blueprint(playerselect.bp)

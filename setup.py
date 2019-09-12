@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="drafty",
-    version="0.1",
+    version="0.2",
     author="Petep",
     author_email="",
     description="create GB PDFs",
